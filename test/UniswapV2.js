@@ -64,12 +64,12 @@ describe("Uniswap Test", function () {
   it("addLiquidityETH", async function () {
     await UniswapV2Router02.addLiquidityETH(
       MyToken.address,
-      to18Decimals(10),
-      to18Decimals(1),
-      to18Decimals(1),
+      expandTo18Decimals(10),
+      expandTo18Decimals(1),
+      expandTo18Decimals(1),
       deployer.address,
       Math.floor(Date.now() / 1000) + 100,
-      { value: to18Decimals(10) }
+      { value: expandTo18Decimals(10) }
     );
 
     const pairAddress = await UniswapV2Factory.getPair(
@@ -85,10 +85,10 @@ describe("Uniswap Test", function () {
     await UniswapV2Router02.addLiquidity(
       USDT.address,
       MyToken.address,
-      to18Decimals(100),
-      to18Decimals(100),
-      to18Decimals(1),
-      to18Decimals(1),
+      expandTo18Decimals(100),
+      expandTo18Decimals(100),
+      expandTo18Decimals(1),
+      expandTo18Decimals(1),
       deployer.address,
       Math.floor(Date.now() / 1000) + 100
     );
@@ -102,8 +102,8 @@ describe("Uniswap Test", function () {
     console.log("oldres: ", oldres);
 
     await UniswapV2Router02.swapExactTokensForTokens(
-      to18Decimals(10),
-      to18Decimals(1),
+      expandTo18Decimals(10),
+      expandTo18Decimals(1),
       [MyToken.address, USDT.address],
       deployer.address,
       Math.floor(Date.now() / 1000) + 100
@@ -117,10 +117,10 @@ describe("Uniswap Test", function () {
     await UniswapV2Router02.addLiquidity(
       USDT.address,
       MyToken.address,
-      to18Decimals(100),
-      to18Decimals(100),
-      to18Decimals(1),
-      to18Decimals(1),
+      expandTo18Decimals(100),
+      expandTo18Decimals(100),
+      expandTo18Decimals(1),
+      expandTo18Decimals(1),
       deployer.address,
       Math.floor(Date.now() / 1000) + 100
     );
@@ -146,8 +146,8 @@ describe("Uniswap Test", function () {
       USDT.address,
       MyToken.address,
       res,
-      to18Decimals(1),
-      to18Decimals(1),
+      expandTo18Decimals(1),
+      expandTo18Decimals(1),
       deployer.address,
       Math.floor(Date.now() / 1000) + 100
     );
@@ -155,6 +155,6 @@ describe("Uniswap Test", function () {
 });
 
 
-function to18Decimals(value) {
+function expandTo18Decimals(value) {
   return BigNumber.from(value).mul(BigNumber.from(10).pow(18));
 }
